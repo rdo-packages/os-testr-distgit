@@ -11,7 +11,7 @@ Summary:        A testr wrapper to provide functionality for OpenStack projects
 
 License:        ASL 2.0
 URL:            http://git.openstack.org/cgit/openstack/%{pypi_name}
-Source0:        https://pypi.python.org/packages/source/o/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+Source0:        http://tarballs.openstack.org/os-testr/os-testr-master.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
@@ -143,7 +143,7 @@ popd
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
 %{python2_sitelib}/os_testr
-%{python2_sitelib}/os_testr-%{upstream_version}-py?.?.egg-info
+%{python2_sitelib}/os_testr-*.egg-info
 
 %if 0%{?with_python3}
 %files -n python3-%{pypi_name}
@@ -153,7 +153,7 @@ popd
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
 %{python3_sitelib}/os_testr
-%{python3_sitelib}/os_testr-%{upstream_version}-py?.?.egg-info
+%{python3_sitelib}/os_testr-*.egg-info
 %endif
 
 %files doc
@@ -167,5 +167,3 @@ popd
 %endif
 
 %changelog
-* Wed Aug 19 2015 chandankumar <chkumar246@gmail.com> - 0.3.0-1
-- Initial package.
