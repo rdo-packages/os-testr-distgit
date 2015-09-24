@@ -75,7 +75,6 @@ Documentation for ostestr module
 mv %{pypi_name}-%{upstream_version} python2
 
 pushd python2
-rm -rf *.egg-info
 
 # Let RPM handle the dependencies
 rm -f test-requirements.txt requirements.txt
