@@ -6,7 +6,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A testr wrapper to provide functionality for OpenStack projects
 
 License:        ASL 2.0
@@ -167,6 +167,9 @@ popd
 %endif
 
 %changelog
+* Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
+
 * Wed Oct 28 2015 Alan Pevec <alan.pevec@redhat.com> 0.4.1-1
 - Update to 0.4.1
 
