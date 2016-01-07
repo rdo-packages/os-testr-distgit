@@ -138,6 +138,7 @@ popd
 %files
 %doc README.rst
 %license LICENSE
+%{_bindir}/generate-subunit
 %{_bindir}/ostestr
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
@@ -148,6 +149,7 @@ popd
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
+%{_bindir}/generate-subunit
 %{_bindir}/ostestr
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
