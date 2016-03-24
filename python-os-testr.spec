@@ -4,14 +4,17 @@
 %global with_python3 1
 %endif
 
+
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        0.6.0
+Release:        1%{?dist}
 Summary:        A testr wrapper to provide functionality for OpenStack projects
 
 License:        ASL 2.0
 URL:            http://git.openstack.org/cgit/openstack/%{pypi_name}
-Source0:        http://tarballs.openstack.org/os-testr/os-testr-master.tar.gz
+Source0:        http://tarballs.openstack.org/os-testr/os-testr-%{version}%{?milestone}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
@@ -168,3 +171,5 @@ popd
 %endif
 
 %changelog
+* Thu Mar 24 2016 RDO <rdo-list@redhat.com> 0.6.0-0.1
+- RC1 Rebuild for Mitaka 
