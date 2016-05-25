@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_724a2985",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-05-25T09:22:24Z",
+      "side": 1,
+      "message": "It\u0027s better to link to the actual commit http://git.openstack.org/cgit/openstack/os-testr/commit/?id\u003d73bf72c71b99a05515f068d28c58dc3e9105202b\nor even better Gerrit review\nhttps://review.openstack.org/312747\n\nAutomated FTBFS review links to the merge commit where DLRN hit the issue.",
+      "revId": "9136205ed5b3451eacd4d0e935bae71137c62d5c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
