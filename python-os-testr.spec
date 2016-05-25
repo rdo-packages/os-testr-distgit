@@ -103,7 +103,7 @@ popd
 %if 0%{?with_python3}
 pushd python3
 %{__python3} setup.py install --skip-build --root=$RPM_BUILD_ROOT
-for file in $RPM_BUILD_ROOT%{python3_sitelib}/os_testr/{subunit_trace,os_testr,subunit2html}.py;do
+for file in $RPM_BUILD_ROOT%{python3_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py;do
     chmod a+x $file
 done
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
