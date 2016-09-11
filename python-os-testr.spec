@@ -6,8 +6,8 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        0.7.0
+Release:        1%{?dist}
 Summary:        A testr wrapper to provide functionality for OpenStack projects
 
 License:        ASL 2.0
@@ -169,3 +169,6 @@ popd
 %endif
 
 %changelog
+* Sun Sep 11 2016 Haikel Guemar <hguemar@fedoraproject.org> 0.7.0-1
+- Update to 0.7.0
+
