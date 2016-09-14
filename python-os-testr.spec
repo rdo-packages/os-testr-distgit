@@ -101,6 +101,22 @@ popd
 %endif
 
 %install
+pushd python2
+%{__python2} setup.py install --skip-build --root=$RPM_BUILD_ROOT
+for file in $RPM_BUILD_ROOT%{python2_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py; do
+    chmod a+x $file
+done
+export PYTHONPATH="$( pwd ):$PYTHONPATH"
+pushd doc
+sphinx-build -b html -d build/doctrees   source build/html
+# Fix hidden-file-or-dir warnings
+rm -fr build/html/.buildinfo
+
+# Fix this rpmlint warning
+sed -i "s|\r||g" build/html/_static/jquery.js
+popd
+popd
+
 %if 0%{?with_python3}
 pushd python3
 %{__python3} setup.py install --skip-build --root=$RPM_BUILD_ROOT
@@ -120,29 +136,16 @@ popd
 popd
 %endif
 
-pushd python2
-%{__python2} setup.py install --skip-build --root=$RPM_BUILD_ROOT
-for file in $RPM_BUILD_ROOT%{python2_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py; do
-    chmod a+x $file
-done
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build -b html -d build/doctrees   source build/html
-# Fix hidden-file-or-dir warnings
-rm -fr build/html/.buildinfo
-
-# Fix this rpmlint warning
-sed -i "s|\r||g" build/html/_static/jquery.js
-popd
-popd
 
 %files
 %doc README.rst
 %license LICENSE
+%if ! 0%{?with_python3}
 %{_bindir}/generate-subunit
 %{_bindir}/ostestr
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
+%endif
 %{python2_sitelib}/os_testr
 %{python2_sitelib}/os_testr-*.egg-info
 
