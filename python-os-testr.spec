@@ -12,7 +12,7 @@ Summary:        A testr wrapper to provide functionality for OpenStack projects
 
 License:        ASL 2.0
 URL:            http://git.openstack.org/cgit/openstack/%{pypi_name}
-Source0:        http://tarballs.openstack.org/os-testr/os-testr-%{upstream_version}.tar.gz
+Source0:        https://tarballs.openstack.org/os-testr/os-testr-%{upstream_version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
