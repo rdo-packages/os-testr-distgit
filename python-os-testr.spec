@@ -6,7 +6,7 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        0.7.0
+Version:        0.8.0
 Release:        1%{?dist}
 Summary:        A testr wrapper to provide functionality for OpenStack projects
 
@@ -172,6 +172,9 @@ popd
 %endif
 
 %changelog
+* Thu Sep 29 2016 Chandan Kumar <chkumar@redhat.com> 0.8.0-1
+- Update to 0.8.0
+
 * Sun Sep 11 2016 Haikel Guemar <hguemar@fedoraproject.org> 0.7.0-1
 - Update to 0.7.0
 
