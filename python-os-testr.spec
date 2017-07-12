@@ -18,6 +18,7 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
+BuildRequires:  git
 
 Requires:       python-pbr
 Requires:       python-babel
@@ -72,7 +73,7 @@ Documentation for ostestr module
 
 
 %prep
-%setup -qc -n %{pypi_name}-%{upstream_version}
+%autosetup -n %{pypi_name}-%{upstream_version} -S git
 mv %{pypi_name}-%{upstream_version} python2
 
 pushd python2
@@ -100,17 +101,17 @@ pushd python3
 popd
 %endif
 
+# generate html docs
+%{__python2} setup.py build_sphinx -b html
+# remove the sphinx-build leftovers
+rm -rf doc/build/html/.{doctrees,buildinfo}
+
 %install
 pushd python2
 %{__python2} setup.py install --skip-build --root=$RPM_BUILD_ROOT
 for file in $RPM_BUILD_ROOT%{python2_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py; do
     chmod a+x $file
 done
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build -b html -d build/doctrees   source build/html
-# Fix hidden-file-or-dir warnings
-rm -fr build/html/.buildinfo
 
 # Fix this rpmlint warning
 sed -i "s|\r||g" build/html/_static/jquery.js
@@ -123,16 +124,6 @@ pushd python3
 for file in $RPM_BUILD_ROOT%{python3_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py;do
     chmod a+x $file
 done
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build-3 -b html -d build/doctrees   source build/html
-
-# Fix hidden-file-or-dir warnings
-rm -fr build/html/.buildinfo
-
-# Fix this rpmlint warning
-sed -i "s|\r||g" build/html/_static/jquery.js
-popd
 popd
 %endif
 
@@ -163,12 +154,6 @@ popd
 
 %files doc
 %license LICENSE
-%doc python2/doc/build/html
-
-%if 0%{?with_python3}
-%files -n python3-%{pypi_name}-doc
-%license LICENSE
-%doc python3/doc/build/html
-%endif
+%doc doc/build/html
 
 %changelog
