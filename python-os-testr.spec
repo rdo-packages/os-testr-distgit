@@ -172,3 +172,4 @@ popd
 %endif
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/os-testr/commit/?id=459665e8bf8b25d25955b12613d4f652f0379735
