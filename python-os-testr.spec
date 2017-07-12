@@ -18,6 +18,8 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
+BuildRequires:  git
+BuildRequires:  openstack-macros
 
 Requires:       python-pbr
 Requires:       python-babel
@@ -72,70 +74,35 @@ Documentation for ostestr module
 
 
 %prep
-%setup -qc -n %{pypi_name}-%{upstream_version}
-mv %{pypi_name}-%{upstream_version} python2
-
-pushd python2
+%autosetup -n %{pypi_name}-%{upstream_version} -S git
 
 # Let RPM handle the dependencies
 rm -f test-requirements.txt requirements.txt
 
-cp -p LICENSE ChangeLog CONTRIBUTING.rst PKG-INFO README.rst ../
-popd
-
-%if 0%{?with_python3}
-cp -a python2 python3
-find python3 -name '*.py' | xargs sed -i 's|^#!/usr/bin/env python2|#!%{__python3}|'
-%endif
-
-find python2 -name '*.py' | xargs sed -i 's|^#!/usr/bin/env python2|#!%{__python2}|'
-
 %build
-pushd python2
-%{__python2} setup.py build
-popd
+%py2_build
 %if 0%{?with_python3}
-pushd python3
-%{__python3} setup.py build
-popd
+%py3_build
 %endif
+
+# generate html docs
+%{__python2} setup.py build_sphinx -b html
+# remove the sphinx-build leftovers
+rm -rf doc/build/html/.{doctrees,buildinfo}
+# Fix this rpmlint warning
+sed -i "s|\r||g" doc/build/html/_static/jquery.js
 
 %install
-pushd python2
-%{__python2} setup.py install --skip-build --root=$RPM_BUILD_ROOT
+%py2_install
 for file in $RPM_BUILD_ROOT%{python2_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py; do
     chmod a+x $file
 done
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build -b html -d build/doctrees   source build/html
-# Fix hidden-file-or-dir warnings
-rm -fr build/html/.buildinfo
-
-# Fix this rpmlint warning
-sed -i "s|\r||g" build/html/_static/jquery.js
-popd
-popd
-
 %if 0%{?with_python3}
-pushd python3
-%{__python3} setup.py install --skip-build --root=$RPM_BUILD_ROOT
+%py3_install
 for file in $RPM_BUILD_ROOT%{python3_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py;do
     chmod a+x $file
 done
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build-3 -b html -d build/doctrees   source build/html
-
-# Fix hidden-file-or-dir warnings
-rm -fr build/html/.buildinfo
-
-# Fix this rpmlint warning
-sed -i "s|\r||g" build/html/_static/jquery.js
-popd
-popd
 %endif
-
 
 %files
 %doc README.rst
@@ -163,12 +130,6 @@ popd
 
 %files doc
 %license LICENSE
-%doc python2/doc/build/html
-
-%if 0%{?with_python3}
-%files -n python3-%{pypi_name}-doc
-%license LICENSE
-%doc python3/doc/build/html
-%endif
+%doc doc/build/html
 
 %changelog
