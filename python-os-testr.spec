@@ -106,7 +106,6 @@ pushd python2
 for file in $RPM_BUILD_ROOT%{python2_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py; do
     chmod a+x $file
 done
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
 pushd doc
 sphinx-build -b html -d build/doctrees   source build/html
 # Fix hidden-file-or-dir warnings
@@ -123,7 +122,6 @@ pushd python3
 for file in $RPM_BUILD_ROOT%{python3_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py;do
     chmod a+x $file
 done
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
 pushd doc
 sphinx-build-3 -b html -d build/doctrees   source build/html
 
