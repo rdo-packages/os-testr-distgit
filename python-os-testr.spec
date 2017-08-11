@@ -6,8 +6,8 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        0.8.2
+Release:        1%{?dist}
 Summary:        A testr wrapper to provide functionality for OpenStack projects
 
 License:        ASL 2.0
@@ -124,3 +124,6 @@ done
 %doc doc/build/html
 
 %changelog
+* Sat Aug 12 2017 Alfredo Moralejo <amoralej@redhat.com> 0.8.2-1
+- Update to 0.8.2
+
