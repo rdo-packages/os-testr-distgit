@@ -23,7 +23,7 @@ BuildRequires:  openstack-macros
 
 Requires:       python-pbr
 Requires:       python-babel
-Requires:       python-testrepository
+Requires:       python-stestr
 Requires:       python-subunit
 Requires:       python-testtools
 Requires:       python-setuptools
@@ -44,7 +44,7 @@ BuildRequires:  python3-setuptools
 
 Requires:       python3-pbr
 Requires:       python3-babel
-Requires:       python3-testrepository
+Requires:       python3-stestr
 Requires:       python3-subunit
 Requires:       python3-testtools
 Requires:       python3-setuptools
