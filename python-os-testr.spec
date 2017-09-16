@@ -68,7 +68,7 @@ Documentation for ostestr module
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
 
 # Let RPM handle the dependencies
-rm -f test-requirements.txt requirements.txt
+%py_req_cleanup
 
 %build
 %py2_build
