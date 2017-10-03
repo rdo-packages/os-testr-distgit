@@ -5,6 +5,10 @@
 %global with_python3 1
 %endif
 
+%global common_desc \
+ostestr is a testr wrapper that uses subunit-trace for output and builds \
+some helpful extra functionality around testr.
+
 Name:           python-%{pypi_name}
 Version:        XXX
 Release:        XXX
@@ -30,8 +34,7 @@ Requires:       python-setuptools
 Provides:       python2-os-testr
 
 %description
-ostestr is a testr wrapper that uses subunit-trace for output and builds
-some helpful extra functionality around testr.
+%{common_desc}
 
 %if 0%{?with_python3}
 %package -n python3-%{pypi_name}
@@ -50,8 +53,7 @@ Requires:       python3-testtools
 Requires:       python3-setuptools
 
 %description -n python3-%{pypi_name}
-ostestr is a testr wrapper that uses subunit-trace for output and builds
-some helpful extra functionality around testr.
+%{common_desc}
 %endif
 
 %package doc
