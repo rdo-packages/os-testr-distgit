@@ -20,20 +20,26 @@ Source0:        https://tarballs.openstack.org/os-testr/os-testr-%{upstream_vers
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
-BuildRequires:  python-pbr
-BuildRequires:  python-setuptools
+BuildRequires:  python2-pbr
+BuildRequires:  python2-setuptools
 BuildRequires:  git
 BuildRequires:  openstack-macros
 
-Requires:       python-pbr
-Requires:       python-babel
-Requires:       python-stestr
-Requires:       python-subunit
-Requires:       python-testtools
-Requires:       python-setuptools
-Provides:       python2-os-testr
-
 %description
+%{common_desc}
+
+%package -n python2-%{pypi_name}
+Summary: %summary
+
+Requires:       python2-pbr
+Requires:       python2-babel
+Requires:       python2-stestr
+Requires:       python2-subunit
+Requires:       python2-testtools
+Requires:       python2-setuptools
+%{?python_provide:%python_provide python2-%{pypi_name}}
+
+%description -n python2-%{pypi_name}
 %{common_desc}
 
 %if 0%{?with_python3}
@@ -97,7 +103,7 @@ for file in $RPM_BUILD_ROOT%{python3_sitelib}/os_testr/{subunit_trace,ostestr,su
 done
 %endif
 
-%files
+%files -n python2-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %if ! 0%{?with_python3}
