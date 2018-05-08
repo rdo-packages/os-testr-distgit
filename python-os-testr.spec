@@ -6,7 +6,7 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        0.8.2
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        A testr wrapper to provide functionality for OpenStack projects
 
@@ -124,6 +124,9 @@ done
 %doc doc/build/html
 
 %changelog
+* Tue May 08 2018 RDO <dev@lists.rdoproject.org> 1.0.0-1
+- Update to 1.0.0
+
 * Sat Aug 12 2017 Alfredo Moralejo <amoralej@redhat.com> 0.8.2-1
 - Update to 0.8.2
 
