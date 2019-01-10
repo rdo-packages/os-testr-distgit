@@ -1,9 +1,11 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global pypi_name os-testr
 
-%if 0%{?fedora}
+%if 0%{?fedora}|| 0%{?rhel} > 7
 %global with_python3 1
 %endif
+
+%global with_doc 1
 
 %global common_desc \
 ostestr is a testr wrapper that uses subunit-trace for output and builds \
@@ -62,15 +64,15 @@ Requires:       python3-setuptools
 %{common_desc}
 %endif
 
+%if 0%{?with_doc}
 %package doc
 Summary: Documentation for ostestr module
 BuildRequires:  python-sphinx
-# FIXME: remove following line when a new release including https://review.openstack.org/#/c/478433/ is in u-c
-BuildRequires:  python-oslo-sphinx
 BuildRequires:  python-openstackdocstheme
 
 %description doc
 Documentation for ostestr module
+%endif
 
 %prep
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
@@ -84,12 +86,14 @@ Documentation for ostestr module
 %py3_build
 %endif
 
+%if 0%{?with_doc}
 # generate html docs
 %{__python2} setup.py build_sphinx -b html
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 # Fix this rpmlint warning
 sed -i "s|\r||g" doc/build/html/_static/jquery.js
+%endif
 
 %install
 %py2_install
@@ -127,8 +131,10 @@ done
 %{python3_sitelib}/os_testr-*.egg-info
 %endif
 
+%if 0%{?with_doc}
 %files doc
 %license LICENSE
 %doc doc/build/html
+%endif
 
 %changelog
