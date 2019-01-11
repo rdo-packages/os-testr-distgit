@@ -52,6 +52,7 @@ BuildArch:     noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
 BuildRequires:  python3-setuptools
+BuildRequires:  /usr/bin/pathfix.py
 
 Requires:       python3-pbr
 Requires:       python3-babel
@@ -105,6 +106,12 @@ done
 for file in $RPM_BUILD_ROOT%{python3_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py;do
     chmod a+x $file
 done
+%endif
+
+# Fix ambiguous shebangs for RHEL > 7 and Fedora > 29
+%if 0%{?with_python3}
+pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{python2_sitelib}/os_testr/
+pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{python3_sitelib}/os_testr/
 %endif
 
 %files -n python2-%{pypi_name}
