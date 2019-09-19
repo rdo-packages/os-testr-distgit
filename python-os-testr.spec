@@ -12,8 +12,8 @@ ostestr is a testr wrapper that uses subunit-trace for output and builds \
 some helpful extra functionality around testr.
 
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        1.1.0
+Release:        1%{?dist}
 Summary:        A testr wrapper to provide functionality for OpenStack projects
 
 License:        ASL 2.0
@@ -145,3 +145,6 @@ pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{python3_sitelib}
 %endif
 
 %changelog
+* Thu Sep 19 2019 RDO <dev@lists.rdoproject.org> 1.1.0-1
+- Update to 1.1.0
+
