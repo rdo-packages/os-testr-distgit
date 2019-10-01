@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adda2ed1_cd2c40a2",
+        "filename": "python-os-testr.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-10-01T10:39:49Z",
+      "side": 1,
+      "message": "can be kept unversioned like it was before",
+      "range": {
+        "startLine": 59,
+        "startChar": 9,
+        "endLine": 59,
+        "endChar": 40
+      },
+      "revId": "9169e3d5511a4c7382cc43eac27574737c289701",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
