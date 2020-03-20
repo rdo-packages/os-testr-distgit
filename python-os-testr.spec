@@ -79,8 +79,6 @@ Documentation for ostestr module
 %{pyver_bin} setup.py build_sphinx -b html
 # remove the sphinx-build-%{pyver} leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
-# Fix this rpmlint warning
-sed -i "s|\r||g" doc/build/html/_static/jquery.js
 %endif
 
 %install
