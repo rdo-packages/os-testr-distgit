@@ -46,11 +46,9 @@ Obsoletes: python2-%{pypi_name} < %{version}-%{release}
 %endif
 
 Requires:       python%{pyver}-pbr
-Requires:       python%{pyver}-babel
 Requires:       python%{pyver}-stestr
 Requires:       python%{pyver}-subunit
 Requires:       python%{pyver}-testtools
-Requires:       python%{pyver}-setuptools
 
 %description -n python%{pyver}-%{pypi_name}
 %{common_desc}
