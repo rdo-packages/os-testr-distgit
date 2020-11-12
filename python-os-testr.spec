@@ -33,7 +33,7 @@ BuildRequires:  /usr/bin/gpgv2
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
 BuildRequires:  python3-setuptools
-BuildRequires:  git
+BuildRequires:  git-core
 BuildRequires:  openstack-macros
 
 %description
