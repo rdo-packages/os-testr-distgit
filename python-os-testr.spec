@@ -56,6 +56,7 @@ Requires:       python3-testtools
 %package -n python-%{pypi_name}-doc
 Summary: Documentation for ostestr module
 BuildRequires:  python3-sphinx
+BuildRequires:  python3-sphinxcontrib-rsvgconverter
 BuildRequires:  python3-openstackdocstheme
 
 %description -n python-%{pypi_name}-doc
