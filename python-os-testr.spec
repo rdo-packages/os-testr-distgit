@@ -85,7 +85,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 
 %install
 %{py3_install}
-for file in %{buildroot}%{python3_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py; do
+for file in %{buildroot}%{python3_sitelib}/os_testr/{subunit_trace,subunit2html}.py; do
     chmod a+x $file
 done
 
