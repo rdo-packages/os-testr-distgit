@@ -85,9 +85,12 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 
 %install
 %{py3_install}
-for file in %{buildroot}%{python3_sitelib}/os_testr/{subunit_trace,ostestr,subunit2html}.py; do
+for file in %{buildroot}%{python3_sitelib}/os_testr/{subunit_trace,subunit2html}.py; do
     chmod a+x $file
 done
+%if "%{version}" != "3.0.0"
+chmod a+x %{buildroot}%{python3_sitelib}/os_testr/ostestr.py
+%endif
 
 # Fix ambiguous shebangs for RHEL > 7 and Fedora > 29
 pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{python3_sitelib}/os_testr/
@@ -96,7 +99,9 @@ pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{python3_sitelib}
 %doc README.rst
 %license LICENSE
 %{_bindir}/generate-subunit
+%if "%{version}" != "3.0.0"
 %{_bindir}/ostestr
+%endif
 %{_bindir}/subunit-trace
 %{_bindir}/subunit2html
 %{python3_sitelib}/os_testr
