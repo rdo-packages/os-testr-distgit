@@ -108,3 +108,4 @@ pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{python3_sitelib}
 %endif
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/os-testr/commit/7f52c37fed04b85fadd243ead5edee4e0926abfc
