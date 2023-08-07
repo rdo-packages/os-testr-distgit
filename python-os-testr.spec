@@ -109,8 +109,8 @@ for file in %{buildroot}%{python3_sitelib}/os_testr/{subunit_trace,subunit2html}
     chmod a+x $file
 done
 
-# Fix ambiguous shebangs for RHEL > 7 and Fedora > 29
-pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{python3_sitelib}/os_testr/
+# Fix ambiguous shebangs
+%py3_shebang_fix %{buildroot}%{python3_sitelib}/os_testr/
 
 %files -n python3-%{pypi_name}
 %doc README.rst
